@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Energiemenge API-Dokumentation</title>
+  <!-- Pfad zu swagger-ui.css relativ zu diesem index.html -->
+  <link rel="stylesheet" href="swagger-ui/swagger-ui.css" />
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <!-- Swagger UI Bundle und Preset -->
+  <script src="swagger-ui/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="swagger-ui/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script>
+    // Initialisierung von Swagger UI
+    window.onload = () => {
+      const ui = SwaggerUIBundle({
+        // Hier gibst du den relativen Pfad zur OpenAPI-Spezi­fikation an.
+        // Da index.html in docs/service-A/ liegt, musst du ../API/bundled-energiemengeAufEbeneDerMarktlokation.yaml verweisen.
+        url: "../API/bundled-energiemengeAufEbeneDerMarktlokation.yaml",
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      })
+      window.ui = ui
+    }
+  </script>
+</body>
+</html>
