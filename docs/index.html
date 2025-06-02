@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>API-Dokumentationen Übersicht</title>
+  <meta charset="UTF-8">
+  <title>Swagger-Dokumentation der EDI@Energy-Schnittstellen</title>
+  <link rel="stylesheet" href="swagger-ui/swagger-ui.css" />
 </head>
 <body>
-  <h1>Übersicht: Meine API-Dokumentationen</h1>
-  <ul>
-    <li><a href="./energiemenge/">Energiemenge Dokumentation</a></li>
-    <li><a href="./kommunikationsdaten/">Kommunikationsdaten Dokumentation</a></li>
-    <!-- Weiter Services eintragen -->
-  </ul>
+  <div id="swagger-ui"></div>
+
+  <script src="swagger-ui/swagger-ui-bundle.js" charset="UTF-8"></script>
+  <script src="swagger-ui/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+  <script>
+    // Hier wird das Dropdown befüllt mit allen Specs in API/
+    // Alternativ könnte man dieses Array per Skript automatisiert updaten lassen.
+    const apiSpecs = [
+      { name: "Energiemengen-API", url: "API/bundled-energiemengeAufEbeneDerMarktlokation.yaml" },
+      { name: "Kommunikationsdaten-API", url: "API/bundled-kommunikationsdatenLFanLF.yaml" },
+      // …
+    ];
+
+    window.onload = () => {
+      const ui = SwaggerUIBundle({
+        urls: apiSpecs,
+        dom_id: "#swagger-ui",
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout",
+        // Optional: Standardmäßig den ersten Eintrag laden
+        // url: apiSpecs[0].url
+      });
+      window.ui = ui;
+    };
+  </script>
 </body>
 </html>
